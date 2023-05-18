@@ -1,0 +1,71 @@
+I. Một số lưu ý QUAN TRỌNG trước khi bắt đầu tìm hiểu Redux
+- Kiến thức cần nắm:
+  - HTML & CSS
+  - Cú pháp & tính năng của ES6
+  - Kiến thức về React: Props, State, Functional Component, React Hook....
+  - Bất đồng bộ trong javascript (Async trong JS)
+- Redux la một PATTERN
+- Redux Toolkit bản chất là Redux
+
+II. Redux là gì?
+- Là một thư viện JS dùng dể quản lý và cập nhật state của ứng dụng
+- Là một PATTERN (khuôn mẫu)
+
+III. Vì sao nên sử dụng Redux 
+- Quản lý Global state 
+  ~ Các components tại mọi nơi trong ứng dụng có thể truy xuất và cập nhật
+  ~ Giải quyết vấn đề của React khi muốn truyền dữ liệu vào các cấp con cháu
+- Dễ dàng Debug
+- Xử lý catching dữ liệu từ Server
+
+IV. Vì sao phải sử dụng Redux Toolkit?
+- Sinh ra để giải quyết các vấn đề đối với Redux Core 
+  ~ Việc cấu hình (config) Redux phức tạp
+  ~ Phải cài đặt thủ công nhiều packages để redux có thể hoạt động hiệu quản~ ~ Redux yêu cầu rất nhiều boilerplate code (nghĩa là code lặp lại nhiều lần)
+
+V. Khi nào nên sử dụng Redux?
+- Redux rất hữu dụng đối với các trường hợp sau:
+  ~ Dự án có số lượng lớn state và các state được sử dụng ở nhiều nơi 
+  ~ State được cao65 nhật thường xuyên
+  ~ Logic code cập nhật state phức tạp 
+  ~ Ứng dụng có số lượng code trung bình hoặc lớn và có nhiều người làm chung 
+  ~ Cần debus và muốn xem cách state được cập nhật tại bất kỳ khoảng thời gian nào 
+=> Không phải lúc nào cũng nên sử dụng Redux 
+
+VI. Kiến trúc của Redux và các khái niệm cần nắm
+- State management
+- Immutability (bất biến)
+1. Ví dụ về mutation (thay đổi giá trị object , array) => KHÔNG NÊN DÙNG TRONG REDUX 
+const obj = {a: 1, b: 2};
+obj.b = 3;
+const arr = ["a","b"];
+arr.push("c");
+arr[1] = "d";
+=> UI hay giao diện không cập nhật chính xác các giá trị mới nhất
+=> Làm cho khó hiểu là tại sao / cách nào mà state được cập nhật
+=> Làm có việc viết test rất là khó 
+=> Phá võ đi khả năng debug mà chúng ta có thể xem state ở từng thời điểm khác nhau được cập nhật như thế nào
+=> Phá vỡ cái PATTERN khuôn mẫu mà Redux xây dựng, ràng buộc và các qui tắc mà chúng ta phải tuân theo để đạt được các lợi ích mà nó mang lại 
+
+2. Ví dụ về immutation (không thay đổi giá trị object , array) => NÊN DÙNG TRONG REDUX 
+const obj = {
+    a: {
+        c: 3,
+    },
+    b: 2
+};
+const obj2 = {
+    ...obj,
+    a: {
+        ...obj.a,
+        c: 42
+    }
+};
+const arr = ['a','b'];
+const arr2 = arr.concat('c');
+
+
+VII. Xây dựng ứng dụng Todo App bẳng:
+- React + Redux Core
+- React + Redux Toolkit
+
